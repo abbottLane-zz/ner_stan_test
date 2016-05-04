@@ -21,3 +21,13 @@ print(classified_text)
 ## TRAIN our own NER model : JaneAusten "Emma" Tutorial #
 #########################################################
 
+# Tokenize the training text
+with open("Resources/emmaCh1.txt") as f:
+    data=f.read().replace('\n', ' ')
+tokenized_emma = word_tokenize(data)
+
+# Write output in format suitable for NER training input
+emma_train_file = open("Resources/emma_train.tsv", "w")
+for tok in tokenized_emma:
+    emma_train_file.write(tok + "\tO\n" ) # Ideally we'd mark entities as well
+emma_train_file.close()
